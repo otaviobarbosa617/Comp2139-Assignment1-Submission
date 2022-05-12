@@ -1,0 +1,16 @@
+﻿@model GBCSporting_OJO.Models.Products
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete - Product</h1>
+
+<div>
+    <h4>Are you sure you want to delete this?</h4>
+    <partial name= "_ProductForm" />
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ProductId" />
+    </form>
+</div>

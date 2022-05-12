@@ -1,0 +1,84 @@
+﻿@model IEnumerable<GBCSporting_OJO.Models.Customers>
+
+@{
+    ViewData["Title"] = "Customer Manager";
+}
+
+<h1>Customer Manager</h1>
+@*Using TempData to exhibit actions sucess or failures*@
+@if (TempData["CustomerAddName"] != null)
+{
+    <div class="container about">
+        <h2>@TempData["CustomerAddName"] has been added with success.</h2>
+    </div>
+    TempData.Remove("CustomerAddName");
+}
+@if (TempData["CustomerEditName"] != null)
+{
+    <div class="container about">
+        <h2>@TempData["CustomerEditName"] has been edited with success.</h2>
+    </div>
+    TempData.Remove("CustomerEditName");
+}
+@if (TempData["CustomerDeleteName"] != null)
+{
+    <div class="container about">
+        <h2>@TempData["CustomerDeleteName"] has been deleted with success.</h2>
+    </div>
+    TempData.Remove("CustomerDeleteName");
+}
+<br />
+<table class="table table-striped">
+    <thead class="thead-light">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerCountry)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerPhone)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CustomerId" class="btn btn-primary">Edit</a> 
+                <a asp-action="Delete" asp-route-id="@item.CustomerId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<br />
+<p>
+    <a asp-action="Create" class= "btn btn-success">Add Customer</a>
+</p>

@@ -1,0 +1,95 @@
+﻿@model IEnumerable<GBCSporting_OJO.Models.Incident>
+
+@{
+    ViewData["Title"] = "Incident Manager";
+}
+
+<h1>Incident Manager</h1>
+@*Using TempData to exhibit actions sucess or failures*@
+@if (TempData["IncidentAddName"] != null)
+{
+    <div class="container about">
+        <h2>@TempData["IncidentAddName"] has been added with success.</h2>
+    </div>
+    TempData.Remove("IncidentAddName");
+}
+@if (TempData["IncidentEditName"] != null)
+{
+    <div class="container about">
+        <h2>@TempData["IncidentEditName"] has been edited with success.</h2>
+    </div>
+    TempData.Remove("IncidentEditName");
+}
+@if (TempData["IncidentDeleteName"] != null)
+{
+    <div class="container about">
+        <h2>@TempData["IncidentDeleteName"] has been deleted with success.</h2>
+    </div>
+    TempData.Remove("IncidentDeleteName");
+}
+
+<br />
+<ul class="nav nav-pills">
+    @*TODO: Correct this active links to proper activation*@
+    <li class="nav-item">
+        <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Incidents" ? "active" : "none")" asp-controller="Incidents" asp-action="Index">All Incidents</a>
+    </li>
+        <li class="nav-item">
+        <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Incidents" ? "active" : "none")" asp-controller="Incidents" asp-action="Index" asp-route-filter="unassigned">Unassigned Incidents</a>
+    </li>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Incidents" ? "active" : "none")" asp-controller="Incidents" asp-action="Index" asp-route-filter="openincidents">Open Incidents</a>
+       <p>@ViewBag.output</p>
+    </li>
+</ul>
+<table class="table table-striped">
+    <thead class="thead-light">
+        <tr>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Incident</th>
+            <th>Description</th>
+            <th>Technician</th>
+            <th>Date Opened</th>
+            <th>Date Closed</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Customer.CustomerFirstName)
+                        @Html.DisplayFor(modelItem => item.Customer.CustomerLastName)
+                    </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncidentTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncidentDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Technician.TechnicianName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncidentDateOpened.Day)/@Html.DisplayFor(modelItem => item.IncidentDateOpened.Month)/@Html.DisplayFor(modelItem => item.IncidentDateOpened.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncidentDateClosed)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IncidentId" class="btn btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.IncidentId" class="btn btn-danger">Delete</a>
+                </td>
+                </tr>
+    }
+    </tbody>
+</table>
+<br />
+<p>
+    <a asp-action="Create" class=" btn btn-success">Create New</a>
+</p>

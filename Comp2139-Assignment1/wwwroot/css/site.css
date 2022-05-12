@@ -1,0 +1,29 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.container .about {
+    color: white;
+    background-color: dimgray;
+    padding: 40px;
+    padding-top: 60px;
+}
+
+input:required:invalid {
+    border: 2px solid red !important;
+}

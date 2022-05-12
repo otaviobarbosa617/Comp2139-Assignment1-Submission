@@ -1,0 +1,70 @@
+﻿@model IEnumerable<GBCSporting_OJO.Models.Products>
+@using Microsoft.AspNetCore.Http;
+
+@{
+    ViewData["Title"] = "Product Manager";
+}
+
+<h1>Product Manager</h1>
+@*Using TempData to exhibit actions sucess or failures*@
+@if (TempData["ProductName"] != null)
+{
+    <div class="container about">
+        <h2>@TempData["ProductAddName"] has been added with success.</h2>
+    </div>
+    TempData.Remove("ProductAddName");
+}
+@if (TempData["EditedProductName"] != null)
+{
+    <div class="container about">
+        <h2>@TempData["EditedProductName"] has been edited with success.</h2>
+    </div>
+    TempData.Remove("EditedProductName");
+}
+@if (TempData["DeletedProductName"] != null)
+{
+    <div class="container about">
+        <h2>@TempData["DeletedProductName"] has been deleted with success.</h2>
+    </div>
+    TempData.Remove("DeletedProductName");
+}
+
+<br />
+
+<table class="table table-striped">
+    <thead class="thead-light">
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Release Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductReleaseDate.Day)/@Html.DisplayFor(modelItem => item.ProductReleaseDate.Month)/@Html.DisplayFor(modelItem => item.ProductReleaseDate.Year)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-primary">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<br />
+<p>
+    <a asp-action="Create" class= "btn btn-success">Add Product</a>
+</p>

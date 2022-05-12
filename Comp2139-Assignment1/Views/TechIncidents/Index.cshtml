@@ -1,0 +1,50 @@
+﻿@model IEnumerable<GBCSporting_OJO.Models.Incident>
+
+@{
+    ViewData["Title"] = "Incidents by Technician";
+}
+
+<h1>Technician - Incidents:</h1>
+@*Using TempData to exhibit actions sucess or failures*@
+@if (TempData["IncidentEditName"] != null)
+{
+    <div class="container about">
+        <h2>@TempData["IncidentEditName"] has been edited with success.</h2>
+    </div>
+    TempData.Remove("IncidentEditName");
+}
+<br />
+<h2>Open Incidents:</h2>
+@*TODO: Make this table a dropdownlist distinct*@
+<table class="table table-striped">
+    <thead class="thead-light">
+        <tr>
+            <th>Technician:</th>
+            <th>Incident Code:</th>
+            <th>Incident Title:</th>
+            <th>Incident Description:</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Technician.TechnicianName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IncidentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IncidentTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IncidentDescription)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IncidentId" class="btn btn-primary">Edit</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

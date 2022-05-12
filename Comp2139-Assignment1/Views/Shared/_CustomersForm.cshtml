@@ -1,0 +1,116 @@
+﻿@model GBCSporting_OJO.Models.Customers
+@{
+    var title = ViewData["Title"] as string;
+}
+
+<hr />
+<div class="row">
+    <div class="col">
+        <form asp-action=@ViewData["Title"]>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if(title == "Edit")
+            {
+                <input type="hidden" asp-for="CustomerId" />
+            }
+
+            <br />
+            <div class="form-group row">
+                <label asp-for="CustomerFirstName" class="col-sm-2 col-form-label">First Name:</label>
+                <div class="col-sm-10">
+                    <input asp-for="CustomerFirstName" class="form-control" />
+                    <span asp-validation-for="CustomerFirstName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+            <div class="form-group row">
+                <label asp-for="CustomerLastName" class="col-sm-2 col-form-label">Last Name:</label>
+                <div class="col-sm-10">
+                    <input asp-for="CustomerLastName" class="form-control" />
+                    <span asp-validation-for="CustomerLastName" class="text-danger"></span>
+                </div>
+            </div>
+
+             <br />
+            <div class="form-group row">
+                <label asp-for="CustomerAddress" class="col-sm-2 col-form-label">Address:</label>
+                <div class="col-sm-10">
+                <input asp-for="CustomerAddress" class="form-control" />
+                <span asp-validation-for="CustomerAddress" class="text-danger"></span>
+                </div>
+            </div>
+
+             <br />
+            <div class="form-group row">
+                <label asp-for="CustomerCity" class="col-sm-2 col-form-label">City:</label>
+                <div class="col-sm-10">
+                    <input asp-for="CustomerCity" class="form-control" />
+                    <span asp-validation-for="CustomerCity" class="text-danger"></span>
+                </div>
+            </div>
+
+             <br />
+            <div class="form-group row">
+                <label asp-for="CustomerState" class="col-sm-2 col-form-label">State:</label>
+                <div class="col-sm-10">
+                    <input asp-for="CustomerState" class="form-control" />
+                    <span asp-validation-for="CustomerState" class="text-danger"></span>
+                </div>
+            </div>
+
+             <br />
+            <div class="form-group row">
+                <label asp-for="CustomerCountry" class="col-sm-2 col-form-label">Country:</label>
+                <div class="col-sm-10">
+                    @if(title == "Create")
+                    {
+                        <select asp-for="CustomerCountry" class="form-control" asp-items="@ViewBag.CustomerCountry">
+                            <option value="">Select Country:</option>
+                        </select>
+                    }
+                    else
+                    {
+                        <input asp-for="CustomerCountry" class="form-control" />
+                    }
+                    <span asp-validation-for="CustomerCountry" class="text-danger"></span>
+                </div>
+            </div>
+
+             <br />
+            <div class="form-group row">
+                <label asp-for="CustomerEmail" class="col-sm-2 col-form-label">Email:</label>
+                <div class="col-sm-10">
+                    <input asp-for="CustomerEmail" class="form-control" />
+                    <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+                </div>
+            </div>
+
+             <br />
+            <div class="form-group row">
+                <label asp-for="CustomerPhone" class="col-sm-2 col-form-label">Phone:</label>
+                <div class="col-sm-10">
+                    <input asp-for="CustomerPhone" class="form-control" />
+                    <span asp-validation-for="CustomerPhone" class="text-danger"></span>
+                </div>
+            </div>
+
+             <br />
+            <div class="form-group">
+                <input type="submit" value="@title" class="btn btn-success" />
+                @if(title == "Create")
+                {
+                 <input type="reset" class="btn btn-danger" />   
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+<br />
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to Customers List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

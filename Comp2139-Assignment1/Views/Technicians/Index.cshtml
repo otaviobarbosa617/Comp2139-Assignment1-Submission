@@ -1,0 +1,64 @@
+﻿@model IEnumerable<GBCSporting_OJO.Models.Technicians>
+
+@{
+    ViewData["Title"] = "Technician Manager";
+}
+
+<h1>Technician Manager</h1>
+@*Using TempData to exhibit actions sucess or failures*@
+@if (TempData["TechAddName"] != null)
+{
+    <div class="container about">
+        <h2>@TempData["TechAddName"] has been added with success.</h2>
+    </div>
+    TempData.Remove("TechAddName");
+}
+@if (TempData["TechEditName"] != null)
+{
+    <div class="container about">
+        <h2>@TempData["TechEditName"] has been edited with success.</h2>
+    </div>
+    TempData.Remove("TechEditName");
+}
+@if (TempData["TechDeleteName"] != null)
+{
+    <div class="container about">
+        <h2>@TempData["TechDeleteName"] has been deleted with success.</h2>
+    </div>
+    TempData.Remove("TechDeleteName");
+}
+<br />
+
+<table class="table table-striped">
+    <thead class="thead-light">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TechnicianName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TechnicianEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TechnicianPhone)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TechnicianId" class="btn btn-primary">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.TechnicianId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<br />
+<p>
+    <a asp-action="Create" class= "btn btn-success">Add Technician</a>
+</p>

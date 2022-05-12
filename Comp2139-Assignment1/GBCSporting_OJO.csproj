@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>GBCSporting_OJO</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Home\Products.cshtml" />
+    <Content Remove="Views\Home\Technicians.cshtml" />
+    <Content Remove="Views\Incidents\Details.cshtml" />
+    <Content Remove="Views\Products\Details.cshtml" />
+    <Content Remove="Views\Technicians\Details.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>

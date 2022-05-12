@@ -1,0 +1,60 @@
+﻿@model Comp2139_Assignment1.Models.Incident
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Incident</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Customer.CustomerAddress)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Product)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Product.ProductCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IncidentTitle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IncidentTitle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IncidentDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IncidentDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Technician)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Technician.TechnicianEmail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IncidentDateOpened)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IncidentDateOpened)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IncidentDateClosed)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IncidentDateClosed)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IncidentId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
